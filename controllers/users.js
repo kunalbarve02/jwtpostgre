@@ -1,23 +1,28 @@
 const db = require('../db')
 
 exports.getAllUsers = async (req, res) => {
+    let { page, limit } = req.query
+    page = parseInt(page)
+    limit = parseInt(limit)
+
+    page = page || 1
+    limit = limit || 10
+
+    let offset = (page - 1) * limit
+    
     try {
         const result = await db.query(
-            "SELECT * FROM users"
+            "SELECT * FROM users ORDER BY id LIMIT $1 OFFSET $2",
+            [limit, offset]
         )
         const users = result.rows
-        if (!users) {
-            return res.status(404).send("Users not found!")
-        }
         return res.status(200).json({
             data: users
         })
-
-    } catch (err) {
+    }
+    catch (err) {
         console.log(err)
-        return res.status(500).send(
-            "Something went wrong. Please try again later."
-        )
+        return res.status(500).send("Something went wrong. Please try again later.")
     }
 }
 

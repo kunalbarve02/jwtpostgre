@@ -3,6 +3,11 @@ const bcrypt = require('bcrypt');
 const app = require('../../server');
 const db = require('../../db');
 
+afterAll(async () => {
+  await db.query('DELETE FROM users where email = $1', ['johndoe@example.com']);
+});
+
+
 describe('Authentication API Endpoint Tests', () => {
   describe('POST /register', () => {
     it('should create a new user and return a token', async () => {
