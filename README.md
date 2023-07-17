@@ -25,6 +25,8 @@
   ```bash
    npm run test
   ```
+** If using any other operating system than windows, please change the syntax of setting environment variables in scripts section of package.json
+
 PostgreSQL database is hosted at - postgres://root:YdJkFQBM9VsaHvVtwW0dWYxPM5hctcHL@dpg-ciojrslph6elhbvi0iig-a.singapore-postgres.render.com/users_gq0d
 
 Postman collection - https://www.postman.com/avionics-geologist-11393109/workspace/public/collection/27284879-dc4e7a36-312c-430f-bf63-30b79afadaeb?action=share&creator=27284879
